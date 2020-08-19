@@ -18,31 +18,40 @@ console.log(dataArray);
 let WIDTH = canvas.width;
 let HEIGHT = canvas.height;
 
-let lineWidth = (WIDTH/bufferLength)*2.5;
 let lineHeight;
 let x = 0;
 
 function renderFrame(){
     requestAnimationFrame(renderFrame);
-    x = 150;
+    x = 200;
     analyser.getByteFrequencyData(dataArray);
-    ctx.fillStyle="#fff";
+    let grd = ctx.createLinearGradient(0, 0, 1500, 0);
+    grd.addColorStop(0, "#7204b1");
+    grd.addColorStop(1, "#c483ea");
     ctx.fillRect(0,0,WIDTH,HEIGHT);
-
+    ctx.fillStyle = grd;
+    ctx.globalAlpha = 0.5;
+    ctx.beginPath();
+    ctx.moveTo(200, 400);
+    ctx.lineTo(1410,400);
+    ctx.stroke(); 
     for(var i =0; i< bufferLength; i++)
     {
         lineHeight = dataArray[i];
-        let r = lineHeight * (20 * (i/bufferLength));
+        let r = lineHeight * (250 * (i/bufferLength));
         let g = 200 * (i/bufferLength);
         let b = 0;
-
-        ctx.fillStyle=`rgb(${r},${g},${b})`;
         ctx.beginPath();
-        ctx.moveTo(x, lineHeight-50);
-        ctx.lineTo(x, HEIGHT-lineHeight);
-        ctx.quadraticCurveTo(450, 250, 500, 300)
+        if(i%2==0){
+            lineHeight+=400;
+        }else{
+            lineHeight= 400-lineHeight;
+        }
+        ctx.quadraticCurveTo(x, 400, x, lineHeight)
         ctx.stroke(); 
-        x += 10;
+        ctx.strokeStyle = '#fff';
+
+        x+=12;
     }
 }
 audio.addEventListener('play', renderFrame);
