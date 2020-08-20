@@ -18,13 +18,15 @@
    <input type="file" id="thefile" accept="audio/*" />
    </div>
     <canvas id="canvas"></canvas>
-    <audio src="" id="audio"></audio>
+    <audio src="" id="audio" preload="metadata"></audio>
     <div class="music__container" id="music__container">
         <div class="progress__container">
             <span class="title">Feel the music🎼</span>
             <div class="progress" id="progress">
                 <div class="progress__bar" id="progress__bar"></div>
             </div>
+            <span class="current_time" id="current_time"></span>
+            <span class="whole_time" id="whole_time"></span>
         </div>
         <div class="image__container">
             <img src="/contents/cd_img.png" alt="">
