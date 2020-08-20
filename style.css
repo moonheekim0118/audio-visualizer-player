@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
 *{
     box-sizing: border-box;
 }
@@ -14,10 +15,99 @@ body{
 }
 
 .file__upload{
-    display: absolute;
-    left:0;
+    position: absolute;
+    transform: translateY(-450%);
 }
 
+.title__container {
+    display: flex;
+    position: absolute;
+    transform: translateY(10%);
+    padding:20px 40px;
+    margin:0;
+    text-align: center;
+    border:3px solid #fff;
+    border-radius: 4px;
+    animation: titleBorder 7s infinite;
+}
+
+
+.title__container .page_title{
+    font-family: 'Bungee Inline', cursive;
+    font-size:70px;
+}
+
+@keyframes title1{
+   from {
+       color:black;
+   }
+   to{
+    background: linear-gradient(to right, #40ff00, #8ca6ce);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+   }
+}
+
+@keyframes title2{
+    from {
+        color:black;
+    }
+    to{
+     background: linear-gradient(to right, #ff3333, #8ca6ce);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+    }
+}
+
+@keyframes title3{
+    from {
+        color:black;
+    }
+    to{
+     background: linear-gradient(to right, #00ffff, #8ca6ce);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+    }
+}
+
+@keyframes titleBorder{
+    0%{
+        border-color: #fff;
+    }  
+    25%{
+       border-color:#40ff00;
+    }
+    50%{
+        border-color:#00ffff;
+    }
+
+    75%{
+        border-color:#8ca6ce;
+    }
+    80%{
+        border-color:#ff1aff;
+    }
+}
+
+
+
+
+#page_title1{
+    animation: title1 2s forwards;
+}
+
+#page_title2{
+    animation: title2 3.5s forwards;
+}
+
+#page_title3{
+    animation: title3 5s forwards;
+}
+
+
+.title__container.hidden{
+  opacity: 0;
+}
 canvas{
     width:100%;
     height:60%;

@@ -6,11 +6,12 @@ const progress__container = document.getElementById('progress');
 const progress__bar = document.getElementById('progress__bar');
 const current_time = document.getElementById('current_time');
 const whole_time = document.getElementById('whole_time');
-
+const title__container = document.getElementById('title__container');
 
 // file 업로드 시, music controller 보여주기 
 file.onchange = function(){
     let files = this.files;
+    title__container.classList.add('hidden');
     console.log(files);
     if(music__container.classList.contains('play')){
         playBtn.innerHTML=`<i class="fas fa-play"></i>`;
