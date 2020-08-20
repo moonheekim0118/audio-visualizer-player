@@ -31,8 +31,8 @@ function renderFrame(){
     ctx.fillRect(0,0,WIDTH,HEIGHT);
     ctx.fillStyle = grd;
     ctx.globalAlpha = 0.5;
-    for(let i =0; i< bufferLength; i++)
-    {
+    let half = bufferLength/2;
+    for(let i = half-1; i>= 0 ; i --){
         lineHeight = dataArray[i];
         ctx.beginPath();
         if(i%2==0){
@@ -45,5 +45,20 @@ function renderFrame(){
         ctx.strokeStyle = '#fff';
         x+=12;
     }
+    for(let i =half; i< bufferLength; i++)
+    {
+        lineHeight = dataArray[i];
+        ctx.beginPath();
+        if(i%2!==0){
+            lineHeight+=400;
+        }else{
+            lineHeight= 400-lineHeight;
+        }
+        ctx.quadraticCurveTo(x, 400, x, lineHeight)
+        ctx.stroke(); 
+        ctx.strokeStyle = '#fff';
+        x+=12;
+    }
+
 }
 audio.addEventListener('play', renderFrame);

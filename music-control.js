@@ -7,11 +7,12 @@ const progress__bar = document.getElementById('progress__bar');
 const current_time = document.getElementById('current_time');
 const whole_time = document.getElementById('whole_time');
 const title__container = document.getElementById('title__container');
-
+const file_uploader = document.getElementById('file_uploader');
 // file 업로드 시, music controller 보여주기 
 file.onchange = function(){
     let files = this.files;
     title__container.classList.add('hidden');
+    file_uploader.innerText='Complete your playlist!';
     console.log(files);
     if(music__container.classList.contains('play')){
         playBtn.innerHTML=`<i class="fas fa-play"></i>`;
@@ -77,5 +78,6 @@ const setTime=function(duration){
 
 
 audio__.addEventListener('timeupdate',updateProgress);
+audio__.addEventListener('ended',musicControl);
 playBtn.addEventListener('click',musicControl);
 progress__container.addEventListener('click',setProgress);
