@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 *{
     box-sizing: border-box;
 }
@@ -9,10 +10,139 @@ body{
     align-items: center;
     height:100vh;
     background-image: linear-gradient(to right, #7204b1, #c483ea);
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.file__upload{
+    display: absolute;
+    left:0;
 }
 
 canvas{
     width:100%;
-    height:80%;
+    height:60%;
     margin-bottom: 50px;
+}
+
+input[type="file"]{
+    position: absolute;
+    left:-99999rem;
+}
+
+.custom-file-upload{
+    border: 1px solid #ccc;
+    display: inline-block;
+    margin-bottom: 10px;;
+    padding: 6px 25px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size:20px;
+    color:#fff;
+}
+
+.custom-file-upload:hover{
+    background-color: #fff;
+    color:black;    
+}
+
+.music__container{
+    display: flex;
+    padding: 20px 30px;
+    position: relative;
+    display: none;
+}
+
+.music__container.show{
+    display: flex;
+}
+
+.image__container img{
+    width:110px;
+    height:110px;
+    z-index:1;
+    position: absolute;
+    top:0;
+    left:0;
+    animation: rotate 2s infinite linear;
+    animation-play-state: paused;
+
+}
+
+.music__container.play img{
+    animation-play-state: running;
+}
+
+@keyframes rotate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(359deg);
+    }
+}
+
+.music__controller{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    background-color:#fff;
+    border: none;
+    width:300px;
+    height:70px;
+    text-align: center;
+    padding-left:40px;
+    border-radius: 5px;
+    z-index: 0;
+    text-align: center;
+}
+
+
+.music__controller .action-btn{
+    cursor: pointer;
+    border:none;
+    background-color:transparent;
+    color:#993366;
+    font-size:20px;
+
+}
+
+
+.music__controller .action-btn:hover{
+    color:#d78eb4;
+}
+
+
+.progress__container{
+    position: absolute;
+    background-color:rgba(250, 250, 250,0.5);
+    width:250px;
+    height: 70px;
+    transform:translate(15%,0%);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-align: center;
+}
+
+.music__container.play .progress__container{
+    transform:translate(15%,-100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+.progress__container .title{
+    font-size:20px;
+}
+
+.progress__container .progress{
+    background-color:#fff;
+    border-radius: 5px;
+    width:90%;
+    height:5%;
+    margin: 5px 15px;
+}
+
+.progress__container .progress__bar{
+    background-color: #cc0099;
+    border-radius: 5px;
+    width:0%;
+    height:100%;
 }

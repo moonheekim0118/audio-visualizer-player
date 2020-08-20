@@ -21,11 +21,12 @@ let HEIGHT = canvas.height;
 let lineHeight;
 let x = 0;
 
+
 function renderFrame(){
     requestAnimationFrame(renderFrame);
     x = 200;
     analyser.getByteFrequencyData(dataArray);
-    let grd = ctx.createLinearGradient(0, 0, 1500, 0);
+    let grd = ctx.createLinearGradient(0, 0, 1700, 0);
     grd.addColorStop(0, "#7204b1");
     grd.addColorStop(1, "#c483ea");
     ctx.fillRect(0,0,WIDTH,HEIGHT);
@@ -50,7 +51,6 @@ function renderFrame(){
         ctx.quadraticCurveTo(x, 400, x, lineHeight)
         ctx.stroke(); 
         ctx.strokeStyle = '#fff';
-
         x+=12;
     }
 }
