@@ -297,6 +297,51 @@ input[type="file"]{
     cursor: pointer;
 }
 
+.playlist__config .edit__list{
+    position: absolute;
+    top:10px;
+    right:17px;
+    cursor: pointer;
+    background-color: transparent;
+    border:none;
+    color:black;
+
+}
+
+.playlist__config .edit__list:hover {
+    color:#cc00cc;
+}
+
+.playlist__config .edit__list.editmode{
+    color:#cc00cc;
+}
+
+.playlist__detail{
+    display: flex;
+    justify-content: space-between;   
+}
+
+.playlist__detail .song__idx{
+    opacity: 0;
+}
+
+.playlist__detail .remove__song{
+    cursor: pointer;
+    background-color: transparent;
+    border:none;
+    color:black;
+    display: none;
+
+}
+
+.playlist__detail .remove__song.editmode{
+    display: block;
+}
+
+.playlist__detail .remove__song:hover{
+    color:#cc00cc;
+}
+
 .playlist__container .song.playing{
     color:#fff;
     text-shadow: 0 0 3px #cc0099;
@@ -311,9 +356,6 @@ input[type="file"]{
     .playlist__container{
         position: absolute;
         transform: translate(-20%, 110%);
-    }
-    canvas{
-        
     }
 }
 

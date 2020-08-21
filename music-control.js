@@ -11,8 +11,10 @@ const whole_time = document.getElementById('whole_time');
 const title__container = document.getElementById('title__container');
 const file_uploader = document.getElementById('file_uploader');
 const playlist__container = document.getElementById('playlist__container');
-const playlist = [] ; 
-const song_names=[];
+let playlist = [] ; 
+let song_names=[];
+const editBtn = document.getElementById('edit__list');
+let removeBtn=[];
 const song__container = document.getElementById('songs');
 let list_song=[];
 let song_index = 0;
@@ -38,12 +40,20 @@ file.onchange = function(){
 // playlist 그리기 
 const drawPlaylist=function(){
     song__container.innerHTML='';
+    if(editBtn.classList.contains('editmode')){
+        editBtn.classList.remove('editmode');
+    }
     song_names.forEach((song, idx)=>{
         let newSong;
         if(idx === song_index-1){ // 현재 재생중인 곡이라면 
-            newSong = `<span class="song playing" id="song">${song}</span>`;
+            newSong = `<div class="playlist__detail"><span class="song playing" id="song">${song}</span><i class="fas fa-trash-alt remove__song" id="remove__song"></i>
+            <div id="song__idx" class="song__idx">${idx}</div>
+            </div>
+            `;
         } else{
-            newSong = `<span class="song" id="song">${song}</span>`;
+            newSong = `<div class="playlist__detail"><span class="song" id="song">${song}</span><i class="fas fa-trash-alt remove__song" id="remove__song"></i>
+            <div id="song__idx" class="song__idx">${idx}</div>
+            </div>`;
         }
         song__container.innerHTML+= newSong
     })   
@@ -67,6 +77,14 @@ const loadMusic= function(){
 }
 
 const musicControl = function(){
+    if(playlist.length===0){
+        audio__.pause();
+        playBtn.innerHTML=`<i class="fas fa-play"></i>`;
+        if(music__container.classList.contains('play')){
+            music__container.classList.remove('play');
+        }
+        return false;
+    }
     music__container.classList.toggle('play');
     if(music__container.classList.contains('play')){
         playBtn.innerHTML=`<i class="fas fa-pause"></i>`;
@@ -145,14 +163,62 @@ const selectSong=function(e){
     song_index=targetIdx;
     loadMusic();
     drawPlaylist();
-    musicControl();
+    // 재생중 아닌 상태에서 재생중인 음악 변경시 바로 재생
+    if(!music__container.classList.contains('play')){ 
+        musicControl();
+    }
     // song name에서 해당 song의 인덱스를 찾아준다.
     // 해당 인덱스를 현재 인덱스로 변경해준다.   
 }
 
-audio__.addEventListener('timeupdate',updateProgress);
-audio__.addEventListener('ended',nextSong);
-nextBtn.addEventListener('click',nextSong);
-prevBtn.addEventListener('click',prevSong);
-playBtn.addEventListener('click',musicControl);
-progress__container.addEventListener('click',setProgress);
+// 특정 song 삭제
+const removeSong=function(e){
+    const idx = +e.target.parentNode.children[2].innerText; // 인덱스에 해당하는 song name, playlist 삭제
+    let tmp=[];
+    tmp = playlist.filter((song,i)=>{
+        return i!==idx;
+    })
+    playlist = tmp;
+    tmp = song_names.filter((song,i)=>{
+        console.log(i);
+        return i!==idx;
+    })
+    song_names=tmp;
+    if(playlist.length === 0){ // 마지막 곡이었다면 
+        song_index=0;
+        musicControl();
+    } else{ // 마지막곡이 아니라면 
+        song_index--; // 인덱스 줄여주기 
+        nextSong(); // 다음 곡으로 넘기기 
+    }
+    drawPlaylist(); // 플레이리스트 다시 그리기 
+}
+
+// edit mode 설정 
+
+const editMode = function(){
+    editBtn.classList.toggle('editmode');
+    removeBtn = document.querySelectorAll('.remove__song');
+    if(editBtn.classList.contains('editmode')){
+        removeBtn.forEach(btn=>{
+            btn.classList.add('editmode');
+            btn.addEventListener('click',removeSong);
+       })
+    }else{
+        removeBtn.forEach(btn=>{
+            btn.classList.remove('editmode');
+       })
+    }
+}
+
+const init = function(){ // event listners
+    audio__.addEventListener('timeupdate',updateProgress);
+    audio__.addEventListener('ended',nextSong);
+    nextBtn.addEventListener('click',nextSong);
+    prevBtn.addEventListener('click',prevSong);
+    playBtn.addEventListener('click',musicControl);
+    progress__container.addEventListener('click',setProgress);
+    editBtn.addEventListener('click',editMode);
+}
+
+init();
