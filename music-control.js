@@ -2,31 +2,60 @@ const file = document.getElementById('thefile');
 const audio__ = document.getElementById('audio');
 const music__container = document.getElementById('music__container');
 const playBtn = document.getElementById('play');
+const nextBtn = document.getElementById('next');
+const prevBtn = document.getElementById('prev');
 const progress__container = document.getElementById('progress');
 const progress__bar = document.getElementById('progress__bar');
 const current_time = document.getElementById('current_time');
 const whole_time = document.getElementById('whole_time');
 const title__container = document.getElementById('title__container');
 const file_uploader = document.getElementById('file_uploader');
+const playlist__container = document.getElementById('playlist__container');
+const playlist = [] ; 
+const song_names=[];
+const song__container = document.getElementById('songs');
+let song_index = 0;
 // file 업로드 시, music controller 보여주기 
+
+
+// 파일 업로드 
 file.onchange = function(){
     let files = this.files;
+    const filteredName = files[0].name.replace('.mp3','');
+    playlist.push(URL.createObjectURL(files[0])); // 업로드된 file src 저장
+    song_names.push(filteredName); // 업로드된 file name 저장
     title__container.classList.add('hidden');
+    playlist__container.classList.add('show');
     file_uploader.innerText='Complete your playlist!';
-    console.log(files);
-    if(music__container.classList.contains('play')){
-        playBtn.innerHTML=`<i class="fas fa-play"></i>`;
-        music__container.classList.remove('play');
-
-    }
-    audio__.src= URL.createObjectURL(files[0]);
-    audio__.load();
-    musicControl(); // 자동 재생 
     music__container.classList.add('show');
+    if(song_index===0){ // 최초의 파일이라면 파일 업로드됨과 함께 load 해주기
+        loadMusic();
+    }
+    drawPlaylist();
+} 
+
+// playlist 그리기 
+const drawPlaylist=function(){
+    song__container.innerHTML='';
+    song_names.forEach((song, idx)=>{
+        let newSong;
+        if(idx === song_index-1){ // 현재 재생중인 곡이라면  🔥 
+            newSong = `<span class="song" id="song">🔥${song}</span>`;
+        } else{
+            newSong = `<span class="song" id="song">${song}</span>`;
+        }
+        song__container.innerHTML+= newSong
+    })   
+}
+
+const loadMusic= function(){
+    audio__.src=playlist[song_index++];
+    audio__.load();
+    musicControl();
     audio__.onloadedmetadata=function(){
         setTime(audio__.duration);
     }
-} 
+}
 
 const musicControl = function(){
     music__container.classList.toggle('play');
@@ -76,8 +105,32 @@ const setTime=function(duration){
     whole_time.innerText=`${wholeMin}:${fill}${wholeSec}`;
 }
 
+// 다음 song으로 넘어가기 
+const nextSong=function(){
+    if(song_index === playlist.length){
+        song_index=0;
+    }
+    loadMusic();
+    drawPlaylist();
+    musicControl(); // 다음 곡 자동 재생 
+}
+
+
+// 이전 song으로 넘기기
+const prevSong = function(){
+    if(song_index === 0){
+        song_index = playlist.length-1;
+    }else{
+        song_index-=2;
+    }
+    loadMusic();
+    drawPlaylist();
+    musicControl();
+}
 
 audio__.addEventListener('timeupdate',updateProgress);
-audio__.addEventListener('ended',musicControl);
+audio__.addEventListener('ended',nextSong);
+nextBtn.addEventListener('click',nextSong);
+prevBtn.addEventListener('click',prevSong);
 playBtn.addEventListener('click',musicControl);
 progress__container.addEventListener('click',setProgress);
