@@ -16,9 +16,25 @@ body{
 }
 
 .file__upload{
+    display: flex;
     position: absolute;
     transform: translateY(-600%);
 }
+
+.file__upload .more__btn{
+    position: absolute;
+    right:-70px;
+    top:10px;
+    cursor: pointer;
+    display: none;
+    color:#fff;
+    font-family: 'Antic', sans-serif;
+}
+
+.file__upload .more__btn:hover{
+    color:#ccc;   
+}
+
 
 .title__container {
     display: flex;
@@ -139,7 +155,8 @@ input[type="file"]{
 
 .music__container{
     display: flex;
-    position: relative;
+    position: absolute;
+    bottom:30px;
     display: none;
     -webkit-box-shadow: -1px 32px 88px 13px rgba(143,8,143,1);
     -moz-box-shadow: -1px 32px 88px 13px rgba(143,8,143,1);
@@ -262,14 +279,13 @@ input[type="file"]{
     position: fixed;
     bottom:0;
     right:20px;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color:rgba(255, 255, 255,0.4);
-    width: 300px;
+    width: 370px;
+    max-height: 35%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    overflow:auto;
     display: none;
     border: 1px solid #fff;
     font-family: 'Antic', sans-serif;
@@ -277,6 +293,17 @@ input[type="file"]{
 
 .playlist__container.show{
     display: flex;
+}
+
+.playlist__container.show.mobile{
+    position: relative;
+    background-color:rgba(255, 255, 255,0.5);
+    width:250px;
+    right:-90px;
+    top:-500px;
+    height: 150px;
+    border-radius: 5px;
+    display: block;
 }
 
 .playlist__container .playlist__title{
@@ -356,13 +383,15 @@ input[type="file"]{
 }
 
 
-@media (max-width:1000px){
-    .playlist__container{
-        position: absolute;
-        transform: translate(-20%, 110%);
+@media (max-width:1100px){
+    .more__btn.show{
+        display: block;
+    }
+
+    .playlist__container.show{
+        display: none;
     }
 }
-
 
 @media (max-width:600px){
 

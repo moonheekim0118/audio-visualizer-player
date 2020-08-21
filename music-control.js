@@ -14,6 +14,7 @@ window.onload=function(){
     const file_uploader = document.getElementById('file_uploader'); // 파일 업로드 컨테이너  
     const playlist__container = document.getElementById('playlist__container'); // 플레이리스트 컨테이너 
     const editBtn = document.getElementById('edit__list'); // 플레이리스트 edit 버튼 
+    const show__playList=document.getElementById('more__btn');
     const song__container = document.getElementById('songs');  // 플레이리스트 내 songs 컨테이너 
     let playlist = [] ;  // song url 담기 
     let song_names=[]; // song title 담기 
@@ -33,6 +34,7 @@ window.onload=function(){
         song_names.push(filteredName); // 업로드된 file name 저장
         title__container.classList.add('hidden');
         playlist__container.classList.add('show');
+        show__playList.classList.add('show');
         file_uploader.innerText='Complete your playlist!';
         music__container.classList.add('show');
         if(song_index===0){ // 최초의 파일이라면 파일 업로드됨과 함께 load 해주기
@@ -217,6 +219,22 @@ window.onload=function(){
         drawPlaylist(); // 플레이리스트 다시 그리기 
     }
 
+    const mobilePlayer=function(){
+        show__playList.classList.toggle('player');
+        if(show__playList.classList.contains('player')){
+            playlist__container.classList.add('mobile');
+        }
+        else{
+            playlist__container.classList.remove('mobile');
+        }
+    }
+
+    const closeMobileVersion=function(){
+        if(window.innerWidth >1100){
+            playlist__container.classList.remove('mobile');
+        }
+    }
+
     const init = function(){ // event listners
         audio__.addEventListener('timeupdate',updateProgress);
         audio__.addEventListener('ended',nextSong);
@@ -225,6 +243,8 @@ window.onload=function(){
         playBtn.addEventListener('click',musicControl);
         progress__container.addEventListener('click',setProgress);
         editBtn.addEventListener('click',editMode);
+        show__playList.addEventListener('click',mobilePlayer);
+        window.addEventListener('resize',closeMobileVersion);
     }
     init(); // 이벤트 리스너 불러오기 
 
