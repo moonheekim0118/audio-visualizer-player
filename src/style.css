@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Antic&display=swap');
+
+:root{
+    --deep-purple:#7204b1;
+    --light-purple:#c483ea;
+    --vivid-purple:#cc00cc;
+}
+
 *{
     box-sizing: border-box;
 }
@@ -11,7 +18,7 @@ body{
     justify-content: center;
     align-items: center;
     height:100vh;
-    background-image: linear-gradient(to right, #7204b1, #c483ea);
+    background-image: linear-gradient(to right, var(--deep-purple), var(--light-purple));
     font-family: 'Shadows Into Light', cursive;
 }
 
@@ -212,14 +219,14 @@ input[type="file"]{
     cursor: pointer;
     border:none;
     background-color:transparent;
-    color:#993366;
+    color:var(--deep-purple);
     font-size:20px;
 
 }
 
 
 .music__controller .action-btn:hover{
-    color:#d78eb4;
+    color:var(--light-purple);
 }
 
 
@@ -254,7 +261,7 @@ input[type="file"]{
 }
 
 .progress__container .progress__bar{
-    background-color: #cc0099;
+    background-color: var(--vivid-purple);
     border-radius: 5px;
     width:0%;
     height:100%;
@@ -339,11 +346,11 @@ input[type="file"]{
 }
 
 .playlist__config .edit__list:hover {
-    color:#cc00cc;
+    color:var(--vivid-purple);
 }
 
 .playlist__config .edit__list.editmode{
-    color:#cc00cc;
+    color:var(--vivid-purple);
 }
 
 .playlist__detail{
@@ -370,16 +377,16 @@ input[type="file"]{
 }
 
 .playlist__detail .remove__song:hover{
-    color:#cc00cc;
+    color:var(--vivid-purple);
 }
 
 .playlist__container .song.playing{
     color:#fff;
-    text-shadow: 0 0 3px #cc0099;
+    text-shadow: 0 0 3px var(--vivid-purple);
 }
 
 .playlist__container .song:hover{
-    background-color:#cc99ff;
+    background-color: var(--light-purple);
 }
 
 

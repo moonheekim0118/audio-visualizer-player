@@ -22,6 +22,14 @@ window.onload=function(){
     let removeBtn=[]; // remove buttons 담기 
     let song_index = 0; // 현재 재생할 song index 
     
+    const openPage = function(){
+        title__container.classList.add('hidden');
+        playlist__container.classList.add('show');
+        show__playList.classList.add('show');
+        file_uploader.innerText='Complete your playlist!';
+        music__container.classList.add('show');
+    }
+
 
     // 파일 업로드 
     file.onchange = function(){
@@ -32,11 +40,7 @@ window.onload=function(){
         }
         playlist.push(URL.createObjectURL(files[0])); // 업로드된 file src 저장
         song_names.push(filteredName); // 업로드된 file name 저장
-        title__container.classList.add('hidden');
-        playlist__container.classList.add('show');
-        show__playList.classList.add('show');
-        file_uploader.innerText='Complete your playlist!';
-        music__container.classList.add('show');
+        openPage();
         if(song_index===0){ // 최초의 파일이라면 파일 업로드됨과 함께 load 해주기
             loadMusic();
         }
@@ -217,6 +221,7 @@ window.onload=function(){
             nextSong(); // 다음 곡으로 넘기기 
         }
         drawPlaylist(); // 플레이리스트 다시 그리기 
+        storeLocalStorage();
     }
 
     const mobilePlayer=function(){

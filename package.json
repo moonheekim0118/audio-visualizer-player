@@ -1,0 +1,30 @@
+{
+  "name": "audio-visualizer-player",
+  "version": "1.0.0",
+  "description": "this is custom audio visualizer player",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moonheekim0118/audio-visualizer-player.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moonheekim0118/audio-visualizer-player/issues"
+  },
+  "homepage": "https://github.com/moonheekim0118/audio-visualizer-player#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "style-loader": "^1.2.1"
+  }
+}
