@@ -25,12 +25,13 @@ body{
 .file__upload{
     display: flex;
     position: absolute;
-    transform: translateY(-600%);
+    padding:10px;
+    top:15px;
 }
 
 .file__upload .more__btn{
     position: absolute;
-    right:-70px;
+    right:-55px;
     top:10px;
     cursor: pointer;
     display: none;
@@ -303,13 +304,14 @@ input[type="file"]{
 }
 
 .playlist__container.show.mobile{
-    position: relative;
+    position: fixed;
+    border-radius: 5px;
     background-color:rgba(255, 255, 255,0.5);
     width:250px;
-    right:-90px;
-    top:-470px;
-    max-height: 150px;
-    border-radius: 5px;
+    max-height: 120px;
+    transform:translate(-50px,200px);
+    top:-100px;
+    right:-30px;
     display: block;
 }
 
@@ -405,6 +407,18 @@ input[type="file"]{
     .title__container {
         display: flex;
         flex-direction: column;
+    }
+
+    .file__upload{
+        top:30px;
+    }
+}
+
+@media (max-width:400px){
+    .music__container img{
+        width:70px;
+        height:70px;
+        left:-20px;
     }
 }
 
