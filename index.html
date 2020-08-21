@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Visualizer</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"
+  />
+</head>
+<body>
+   <div class="file__upload">
+            <label for="thefile" class="custom-file-upload" id="file_uploader">
+                upload any music 🎧
+            </label>
+            <div class="more__btn" id="more__btn">
+                <i class="fas fa-caret-down" class="show__playList" id="show__playList"></i>playlist
+            </div>
+   </div>
+   <input type="file" id="thefile" accept="audio/*" />
+   <div class="title__container" id="title__container">
+        <span class="page_title" id="page_title1">SEE</span>
+        <span class="page_title" id="page_title2">THE</span>
+        <span class="page_title" id="page_title3">MUSIC</span>
+
+    </div>
+    <canvas id="canvas"></canvas>
+    <audio src="" id="audio" preload="metadata"></audio>
+    <div class="music__container" id="music__container">
+        <div class="progress__container">
+            <span class="title">Feel the music🎼</span>
+            <div class="progress" id="progress">
+                <div class="progress__bar" id="progress__bar"></div>
+            </div>
+            <span class="current_time" id="current_time"></span>
+            <span class="whole_time" id="whole_time"></span>
+        </div>
+        <div class="image__container">
+            <img src="/contents/cd_img.png" alt="">
+        </div>
+        <div class="music__controller">
+            <button id="prev" class="action-btn">
+                <i class="fas fa-backward"></i>
+              </button>
+            <button id="play" class="action-btn action-btn-big">
+                <i class="fas fa-play"></i>
+              </button>
+              <button id="next" class="action-btn">
+                <i class="fas fa-forward"></i>
+              </button>
+        </div>
+    </div>
+    <div class="playlist__container" id="playlist__container">
+       <div class="playlist__config">
+        <span class="playlist__title">PlayList💜</span><i class="fas fa-edit edit__list" id="edit__list"></i>
+       </div>
+        <div class="songs" id="songs">
+            <span class="song" id="song"></span>
+        </div>
+    </div>
+    <script src="index_bundle.js"></script>
+</body>
+</html>
