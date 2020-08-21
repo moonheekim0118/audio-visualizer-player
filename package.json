@@ -4,7 +4,10 @@
   "description": "this is custom audio visualizer player",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"npx webpack",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d public"
   },
   "repository": {
     "type": "git",
@@ -15,12 +18,13 @@
   "bugs": {
     "url": "https://github.com/moonheekim0118/audio-visualizer-player/issues"
   },
-  "homepage": "https://github.com/moonheekim0118/audio-visualizer-player#readme",
+  "homepage": "https://moonheekim0118.github.io/audio-visualizer-player",
   "devDependencies": {
     "@babel/core": "^7.11.4",
     "@babel/preset-env": "^7.11.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.1",
+    "gh-pages": "^3.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
