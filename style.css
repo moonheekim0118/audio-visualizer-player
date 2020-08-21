@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Antic&display=swap');
 *{
     box-sizing: border-box;
 }
@@ -29,14 +30,6 @@ body{
     border:3px solid #fff;
     border-radius: 4px;
     animation: titleBorder 7s infinite;
-}
-
-@media (max-width:600px){
-
-    .title__container {
-        display: flex;
-        flex-direction: column;
-    }
 }
 
 
@@ -116,6 +109,7 @@ body{
 .title__container.hidden{
   opacity: 0;
 }
+
 canvas{
     width:100%;
     height:60%;
@@ -145,9 +139,11 @@ input[type="file"]{
 
 .music__container{
     display: flex;
-    padding: 20px 30px;
     position: relative;
     display: none;
+    -webkit-box-shadow: -1px 32px 88px 13px rgba(143,8,143,1);
+    -moz-box-shadow: -1px 32px 88px 13px rgba(143,8,143,1);
+    box-shadow: -1px 32px 88px 13px rgba(143,8,143,1);
 }
 
 .music__container.show{
@@ -159,8 +155,8 @@ input[type="file"]{
     height:110px;
     z-index:1;
     position: absolute;
-    top:0;
-    left:0;
+    top:-30px;
+    left:-40px;
     animation: rotate 2s infinite linear;
     animation-play-state: paused;
 
@@ -275,6 +271,8 @@ input[type="file"]{
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     display: none;
+    border: 1px solid #fff;
+    font-family: 'Antic', sans-serif;
 }
 
 .playlist__container.show{
@@ -287,7 +285,6 @@ input[type="file"]{
 
 
 .playlist__container .songs{
-    border-top:2px solid #fff;
     padding:10px 20px;
     display: flex;
     flex-direction: column;
@@ -308,6 +305,12 @@ input[type="file"]{
 
 }
 
+.playlist__config{
+    padding: 15px;
+    border-bottom:2px solid #fff;
+    font-family: 'Shadows Into Light', cursive;
+}
+
 .playlist__config .edit__list:hover {
     color:#cc00cc;
 }
@@ -318,11 +321,12 @@ input[type="file"]{
 
 .playlist__detail{
     display: flex;
-    justify-content: space-between;   
+    padding : 3px 0;
+    justify-content: space-between;
 }
 
 .playlist__detail .song__idx{
-    opacity: 0;
+    display: none;
 }
 
 .playlist__detail .remove__song{
@@ -360,6 +364,12 @@ input[type="file"]{
 }
 
 
+@media (max-width:600px){
 
+    .title__container {
+        display: flex;
+        flex-direction: column;
+    }
+}
 
 
