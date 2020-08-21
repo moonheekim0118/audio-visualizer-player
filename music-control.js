@@ -14,6 +14,7 @@ const playlist__container = document.getElementById('playlist__container');
 const playlist = [] ; 
 const song_names=[];
 const song__container = document.getElementById('songs');
+let list_song=[];
 let song_index = 0;
 // file 업로드 시, music controller 보여주기 
 
@@ -39,13 +40,21 @@ const drawPlaylist=function(){
     song__container.innerHTML='';
     song_names.forEach((song, idx)=>{
         let newSong;
-        if(idx === song_index-1){ // 현재 재생중인 곡이라면  🔥 
-            newSong = `<span class="song" id="song">🔥${song}</span>`;
+        if(idx === song_index-1){ // 현재 재생중인 곡이라면 
+            newSong = `<span class="song playing" id="song">${song}</span>`;
         } else{
             newSong = `<span class="song" id="song">${song}</span>`;
         }
         song__container.innerHTML+= newSong
     })   
+    list_song=document.querySelectorAll('.song');
+    songsEventListeners();
+}
+
+const songsEventListeners=function(){
+    list_song.forEach(song=>{
+        song.addEventListener('click',selectSong);
+    })
 }
 
 const loadMusic= function(){
@@ -118,14 +127,27 @@ const nextSong=function(){
 
 // 이전 song으로 넘기기
 const prevSong = function(){
-    if(song_index === 0){
+    if(song_index === 0 || song_index==1){
         song_index = playlist.length-1;
     }else{
         song_index-=2;
     }
+    console.log(song_index);
     loadMusic();
     drawPlaylist();
     musicControl();
+}
+
+// play list에서 특정 song을 클릭하면 해당 song을 재생해준다.
+const selectSong=function(e){
+    const targetSong= e.target.innerText;
+    const targetIdx = song_names.indexOf(targetSong);
+    song_index=targetIdx;
+    loadMusic();
+    drawPlaylist();
+    musicControl();
+    // song name에서 해당 song의 인덱스를 찾아준다.
+    // 해당 인덱스를 현재 인덱스로 변경해준다.   
 }
 
 audio__.addEventListener('timeupdate',updateProgress);

@@ -282,17 +282,29 @@ input[type="file"]{
 }
 
 .playlist__container .playlist__title{
-    border-bottom:2px solid #fff;
     font-size: 20px;
 }
 
 
 .playlist__container .songs{
-    padding:10px 0;
+    border-top:2px solid #fff;
+    padding:10px 20px;
     display: flex;
     flex-direction: column;
 }
 
+.playlist__container .song{
+    cursor: pointer;
+}
+
+.playlist__container .song.playing{
+    color:#fff;
+    text-shadow: 0 0 3px #cc0099;
+}
+
+.playlist__container .song:hover{
+    background-color:#cc99ff;
+}
 
 
 @media (max-width:1000px){
