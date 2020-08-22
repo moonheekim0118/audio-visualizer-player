@@ -22,7 +22,7 @@ window.onload=function(){
     let list_song=[]; //  playlist 내 song 담기 
     let removeBtn=[]; // remove buttons 담기 
     let song_index = 0; // 현재 재생할 song index 
-    
+    let file_num = 0;
     const openPage = function(){
         title__container.classList.add('hidden');
         playlist__container.classList.add('show');
@@ -34,7 +34,10 @@ window.onload=function(){
 
     // 파일 업로드 
     file.onchange = function(){
-        getAudio();
+        if(file_num === 0 ){
+            getAudio();
+        } // 첫 업로드에만..
+        file_num++;
         let files = this.files;
         const filteredName = files[0].name.replace('.mp3','');
         if(song_names.indexOf(filteredName)!==-1){ // 중복 방지 
