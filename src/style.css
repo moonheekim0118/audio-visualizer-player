@@ -12,6 +12,10 @@
     box-sizing: border-box;
 }
 
+*:focus{
+    outline:none;
+}
+
 body{
     display: flex;
     flex-direction: column;
@@ -62,7 +66,7 @@ body{
     font-size: 5.5vw;
 }
 
-@keyframes title1{
+@-webkit-keyframes title1{
    from {
        color:black;
    }
@@ -73,7 +77,7 @@ body{
    }
 }
 
-@keyframes title2{
+@-webkit-keyframes title2{
     from {
         color:black;
     }
@@ -84,7 +88,7 @@ body{
     }
 }
 
-@keyframes title3{
+@-webkit-keyframes title3{
     from {
         color:black;
     }
@@ -95,7 +99,7 @@ body{
     }
 }
 
-@keyframes titleBorder{
+@-webkit-keyframes titleBorder{
     0%{
         border-color: #fff;
     }  
@@ -118,15 +122,15 @@ body{
 
 
 #page_title1{
-    animation: title1 2s forwards;
+    animation: title1 2s  linear forwards;
 }
 
 #page_title2{
-    animation: title2 3.5s forwards;
+    animation: title2 3.5s linear forwards;
 }
 
 #page_title3{
-    animation: title3 5s forwards;
+    animation: title3 5s linear forwards;
 }
 
 

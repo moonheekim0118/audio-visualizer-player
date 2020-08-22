@@ -1,18 +1,27 @@
 const audio = document.getElementById('audio');
-const context = new AudioContext();
-const src = context.createMediaElementSource(audio);
-const analyser = context.createAnalyser();
+const file = document.getElementById('thefile');
+let dataArray=[];
+let analyser;
+let bufferLength;
 
+export const getAudio= function(){
+    const context = new AudioContext();
+    const src = context.createMediaElementSource(audio);
+    analyser = context.createAnalyser();
+    src.connect(analyser);
+    analyser.connect(context.destination);
+    analyser.fftSize=256;
+    bufferLength = analyser.frequencyBinCount;
+    dataArray=new Uint8Array(bufferLength);
+
+    if(context.state!=='running'){
+        context.resume();
+    }
+}
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height= window.innerHeight;
-src.connect(analyser);
-analyser.connect(context.destination);
-
-analyser.fftSize=256;
-const bufferLength = analyser.frequencyBinCount;
-const dataArray=new Uint8Array(bufferLength);
 
 function renderFrame(){
     requestAnimationFrame(renderFrame);
@@ -76,6 +85,6 @@ const redrawing = function(){
     canvas.width = window.innerWidth;
     canvas.height= window.innerHeight;
 }
-audio.addEventListener('play', renderFrame);
 
+audio.addEventListener('play',renderFrame);
 window.addEventListener('resize',redrawing);

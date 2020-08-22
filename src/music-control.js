@@ -1,3 +1,4 @@
+import {getAudio} from './visualizer.js';
 
 window.onload=function(){
     const file = document.getElementById('thefile'); // 파일 
@@ -33,6 +34,7 @@ window.onload=function(){
 
     // 파일 업로드 
     file.onchange = function(){
+        getAudio();
         let files = this.files;
         const filteredName = files[0].name.replace('.mp3','');
         if(song_names.indexOf(filteredName)!==-1){ // 중복 방지 
